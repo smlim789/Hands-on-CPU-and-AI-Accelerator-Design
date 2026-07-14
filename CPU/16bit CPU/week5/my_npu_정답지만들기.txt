@@ -1,0 +1,71 @@
+### 라이브러리 import & 파라미터 설정 ###
+
+import numpy as np
+
+CONV_COLUMN = 3
+CONV_ROW = 3
+
+
+
+### input image, weight, bias, result setting ###
+
+input_image = np.zeros((CONV_ROW, CONV_COLUMN), dtype=int)
+weight = np.zeros((CONV_ROW, CONV_COLUMN), dtype=int)
+bias = 0
+result_temp = 0
+result = 0
+
+
+
+### input image & weight 값 받기 ###
+
+input_image_values = list(map(int,input(f"Enter the {CONV_ROW*CONV_COLUMN} input_image values : ").split()))
+weight_values = list(map(int,input(f"Enter the {CONV_ROW*CONV_COLUMN} weight values : ").split()))
+
+input_image = np.array(input_image_values).reshape(CONV_ROW,CONV_COLUMN)
+weight = np.array(weight_values).reshape(CONV_ROW,CONV_COLUMN)
+
+
+
+### bias 값 입력 ###
+
+bias = int(input(f"Enter the bias value : "))
+
+
+
+### convolution 연산 완료 ###
+
+for x in range(CONV_ROW):
+  for y in range(CONV_COLUMN):
+    result_temp += input_image[x][y]*weight[x][y]
+
+
+
+### bias add ###
+
+result = result_temp + bias
+
+
+
+### bias 연산 결과값 확인 ###
+
+result_view = np.sum(result)
+print("result_view : ", result_view)
+
+
+
+### max pooling & ReLU 결과값 확인 ###
+
+pooling_max = 200000
+result_view_max = max(result_view,pooling_max)
+
+print("result_view_max : ", result_view_max)
+
+result_view_relu = 0
+
+if result_view_max < 0 :
+  result_view_relu = 0
+else :
+  result_view_relu = result_view_max
+
+print("result_view_relu : ", result_view_relu)

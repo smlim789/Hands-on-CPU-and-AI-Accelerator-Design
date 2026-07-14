@@ -1,0 +1,15 @@
+import matplotlib.pyplot as plt
+from scipy.signal import freqz
+import numpy as np
+
+coef = [1, 3.236, 5.236, 5.236, 3.236]
+w, h = freqz(coef)
+
+plt.plot(w, (abs(h)))
+plt.xscale('log')
+plt.title('Amplitude response')
+plt.xlabel('Frequency [radians / sample]')
+plt.ylabel('Amplitude [dB]')
+plt.margins(0, 0.1)
+plt.grid(which='both', axis='both')
+plt.show()

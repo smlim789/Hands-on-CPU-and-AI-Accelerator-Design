@@ -1,0 +1,16 @@
+import matplotlib.pyplot as plt
+from scipy.signal import freqz
+import numpy as np
+
+coef = [2, 2] # 정답 계수 입력하기
+w, h = freqz(coef)
+
+plt.plot(w, (abs(h)))
+plt.xscale('log')
+plt.title('Amplitude response')
+plt.xlabel('Frequency [radians / sample]')
+plt.ylabel('Amplitude [dB]')
+plt.margins(0, 0.1)
+plt.grid(which='both', axis='both')
+plt.axvline(np.pi / 2, color='green') # cutoff frequency
+plt.show()
